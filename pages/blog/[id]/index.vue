@@ -1,20 +1,21 @@
 <script lang="ts" setup>
 interface ResData {
   id: number;
-  name: string;
-  email: string;
+  title: string;
+  content: string;
 }
 
 const route = useRoute();
-const id = route.params.id;
-console.log(id);
-const { data: article } = await useFetch<ResData>(`/engineer-blog/${id}`, {
-  baseURL: 'https://kira-engineer.microcms.io/api/v1/',
-  pick: ['id', 'title', 'content'],
-  headers: {
-    'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
-  },
-});
+const { data: article } = await useFetch<ResData>(
+  `/engineer-blog/${route.params.id}`,
+  {
+    baseURL: 'https://kira-engineer.microcms.io/api/v1/',
+    pick: ['id', 'title', 'content'],
+    headers: {
+      'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
+    },
+  }
+);
 </script>
 
 <template>
@@ -51,6 +52,7 @@ const { data: article } = await useFetch<ResData>(`/engineer-blog/${id}`, {
         </div>
         <div class="col-span-1 bg-white rounded-md shadow"></div>
       </div>
+      <FooterLayout />
     </div>
   </div>
 </template>

@@ -18,7 +18,6 @@
       </svg>
       Kira's Port.
     </nuxt-link>
-
     <NavigationMenu
       :navClasses="['hidden', 'lg:flex', 'gap-12']"
       :linkClasses="[
@@ -29,7 +28,6 @@
         'font-semibold',
       ]"
     />
-
     <HumburgerMenuBtn />
   </header>
 </template>

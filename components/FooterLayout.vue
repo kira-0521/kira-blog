@@ -3,10 +3,6 @@
     <div
       class="flex flex-col md:flex-row justify-between items-center border-t border-b gap-4 py-6"
     >
-      <!-- nav - start -->
-      <nav :class="navClasses">
-        <nuxt-link to="/" class="transition duration-100">Home</nuxt-link>
-      </nav>
       <NavigationMenu
         :navClasses="[
           'flex',
@@ -23,7 +19,6 @@
           'active:text-indigo-600',
         ]"
       />
-      <!-- nav - end -->
 
       <SnsNav />
     </div>

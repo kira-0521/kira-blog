@@ -12,11 +12,11 @@
 export default {
   props: {
     navClasses: {
-      type: Array,
+      type: Array as () => string[],
       required: true,
     },
     linkClasses: {
-      type: Array,
+      type: Array as () => string[],
       required: true,
     },
   },
