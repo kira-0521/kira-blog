@@ -10,7 +10,12 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        twitter: '#1DA1F2',
+        github: '#171515',
+      },
+    },
   },
   variants: {
     extend: {},
