@@ -1,13 +1,3 @@
-<template>
-  <!-- nav - start -->
-  <nav class="" :class="navClasses">
-    <nuxt-link to="/" class="transition duration-100" :class="linkClasses"
-      >Home</nuxt-link
-    >
-  </nav>
-  <!-- nav - end -->
-</template>
-
 <script lang="ts">
 export default {
   props: {
@@ -22,3 +12,11 @@ export default {
   },
 };
 </script>
+
+<template>
+  <nav :class="navClasses">
+    <nuxt-link to="/" class="transition duration-100" :class="linkClasses"
+      >Home</nuxt-link
+    >
+  </nav>
+</template>

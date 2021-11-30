@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { Stringifier } from 'postcss';
-import FooterLayout1 from '~~/components/FooterLayout.vue';
-
 interface ResData {
   id: number;
   name: string;

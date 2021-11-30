@@ -15,7 +15,6 @@
         clip-rule="evenodd"
       />
     </svg>
-
     Menu
   </button>
 </template>

@@ -7,7 +7,7 @@ const linkGray = [
 ];
 const imgSize5 = ['w-5', 'h-5'];
 
-const snsParams = [
+const SNS_PARAMS = [
   {
     name: 'instagram',
     link: 'sample',
@@ -37,7 +37,7 @@ const snsParams = [
 
 <template>
   <div class="flex gap-4">
-    <template v-for="sns in snsParams">
+    <template v-for="sns in SNS_PARAMS">
       <a :href="sns.link" target="_blank" :class="sns.linkClasses">
         <svg
           :class="sns.imgClasses"
