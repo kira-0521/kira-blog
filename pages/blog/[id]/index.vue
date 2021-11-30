@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 interface ResData {
-  id: number;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
   title: string;
   content: string;
 }
 
 const route = useRoute();
-const { data: article } = await useFetch<ResData>(
+const { data: article } = await useFetch<string, ResData>(
   `/engineer-blog/${route.params.id}`,
   {
     baseURL: 'https://kira-engineer.microcms.io/api/v1/',
-    pick: ['id', 'title', 'content'],
+    pick: ['id', 'title', 'content', 'createdAt', 'updatedAt'],
     headers: {
       'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
     },
