@@ -27,7 +27,7 @@
       キラログ
     </nuxt-link>
     <NavigationMenu
-      :navClasses="['hidden', 'lg:flex', 'gap-12']"
+      :navClasses="['flex', 'gap-12']"
       :linkClasses="[
         'text-gray-600',
         'hover:text-indigo-500',
@@ -36,6 +36,6 @@
         'font-semibold',
       ]"
     />
-    <HumburgerMenuBtn />
+    <!-- <HumburgerMenuBtn /> -->
   </header>
 </template>

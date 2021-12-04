@@ -1,17 +1,9 @@
 <script lang="ts" setup>
-interface ResData {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  title: string;
-  content: string;
-}
+import { ResData } from '../../../composables/types/api/microcmsResponse';
 
 const route = useRoute();
 const { data: article } = await useFetch<string, ResData>(
-  `/engineer-blog/${route.params.id}`,
+  `/engineer-blog/${route.params.id}?richEditorFormat=object`,
   {
     baseURL: 'https://kira-engineer.microcms.io/api/v1/',
     pick: ['id', 'title', 'content', 'createdAt', 'updatedAt'],
@@ -20,13 +12,15 @@ const { data: article } = await useFetch<string, ResData>(
     },
   }
 );
+console.log(article.value.content.contents);
 </script>
 
 <template>
   <div class="bg-gray-100 pb-6 sm:pb-8 lg:pb-12">
     <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
       <HeaderLayout />
-      <div class="grid grid-cols-3 gap-4 py-6 lg:container mx-auto">
+      <div class="py-6 lg:container mx-auto">
+        <!-- <div class="grid grid-cols-3 gap-4 py-6 lg:container mx-auto"> -->
         <div class="col-span-2 bg-white rounded-md shadow">
           <div class="px-6 py-4 sm:px-8 sm:py-6 lg:px-12 lg:py-10">
             <div class="px-4 md:px-8">
@@ -37,24 +31,25 @@ const { data: article } = await useFetch<string, ResData>(
               </h1>
 
               <div
-                class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8"
+                class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-2/3 h-2/4 mx-auto"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600&h=350"
+                  :src="article.content.contents[0].value"
                   loading="lazy"
                   alt="Photo by Minh Pham"
                   class="w-full h-full object-cover object-center"
                 />
               </div>
 
-              <p
-                class="text-gray-500 sm:text-lg mb-6 md:mb-8"
-                v-html="article.content"
-              ></p>
+              <div class="w-2/3 mx-auto">
+                <p class="text-gray-500 sm:text-lg mb-6 md:mb-8">
+                  {{ article.content.contents[1].value[1].value }}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-span-1 bg-white rounded-md shadow"></div>
+        <!-- <div class="col-span-1 bg-white rounded-md shadow"></div> -->
       </div>
       <FooterLayout />
     </div>

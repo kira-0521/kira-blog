@@ -1,16 +1,7 @@
 <script lang="ts" setup>
-interface ResData {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  title: string;
-  content: string;
-}
+import { ResData } from '../composables/types/api/microcmsResponse';
 
-const res = await useFetch('/engineer-blog', {
-  // pick: ['contents'],
+const res = await useFetch('/engineer-blog?richEditorFormat=object', {
   baseURL: 'https://kira-engineer.microcms.io/api/v1/',
   headers: {
     'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
@@ -33,7 +24,7 @@ const articleList: ResData[] = res.data.value['contents'];
             記事一覧
           </h2>
           <div
-            class="bg-gradient-to-r from-green-400 to-blue-500 w-16 h-1 mx-auto rounded"
+            class="bg-gradient-to-r from-green-400 to-indigo-500 w-16 h-1 mx-auto rounded"
           ></div>
         </div>
         <!-- text - end -->
@@ -52,16 +43,16 @@ const articleList: ResData[] = res.data.value['contents'];
                   class="group w-full md:w-32 lg:w-48 h-48 md:h-full self-start flex-shrink-0 bg-gray-100 overflow-hidden relative"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600"
+                    :src="data.image.url"
+                    :alt="data.alt"
                     loading="lazy"
-                    alt="Photo by Minh Pham"
                     class="w-full h-full object-cover object-center absolute inset-0 transform group-hover:scale-110 transition duration-200"
                   />
                 </div>
 
                 <div class="flex flex-col gap-2 p-4 lg:p-6">
                   <span class="text-gray-400 text-sm">{{
-                    data.createdAt
+                    new Date(Date.parse(data.createdAt)).toLocaleDateString()
                   }}</span>
 
                   <h2
@@ -71,7 +62,12 @@ const articleList: ResData[] = res.data.value['contents'];
                   </h2>
 
                   <p class="text-gray-500">
-                    {{ `${data.content.slice(3, 30)}...` }}
+                    {{
+                      `${data.content.contents[1].value[1].value.substring(
+                        0,
+                        30
+                      )}...`
+                    }}
                   </p>
 
                   <span
