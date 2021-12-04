@@ -11,5 +11,10 @@
     "postcss": "^8.4.3",
     "stylelint-config-recommended": "^6.0.0",
     "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.44.0",
+    "sass-loader": "^12.3.0"
   }
 }
