@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { ResData } from '../composables/types/api/microcmsResponse';
+import { ResData, Data } from '../composables/types/api/microcmsResponse';
 
-const res = await useFetch('/engineer-blog?richEditorFormat=object', {
+const { data } = await useFetch<string, Data>('/engineer-blog', {
   baseURL: 'https://kira-engineer.microcms.io/api/v1/',
   headers: {
     'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
   },
 });
-const articleList: ResData[] = res.data.value['contents'];
+const articles: Array<ResData> = data.value.contents;
 </script>
 
 <template>
@@ -33,18 +33,18 @@ const articleList: ResData[] = res.data.value['contents'];
           class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 xl:gap-8"
         >
           <!-- article - start -->
-          <template v-for="data in articleList">
+          <template v-for="article in articles">
             <li class="border rounded-lg overflow-hidden">
               <nuxt-link
-                :to="`/blog/${data.id}`"
+                :to="`/blog/${article.id}`"
                 class="w-full h-full flex flex-col md:flex-row items-center"
               >
                 <div
                   class="group w-full md:w-32 lg:w-48 h-48 md:h-full self-start flex-shrink-0 bg-gray-100 overflow-hidden relative"
                 >
                   <img
-                    :src="data.image.url"
-                    :alt="data.alt"
+                    :src="article.image.url"
+                    :alt="article.alt"
                     loading="lazy"
                     class="w-full h-full object-cover object-center absolute inset-0 transform group-hover:scale-110 transition duration-200"
                   />
@@ -52,22 +52,17 @@ const articleList: ResData[] = res.data.value['contents'];
 
                 <div class="flex flex-col gap-2 p-4 lg:p-6">
                   <span class="text-gray-400 text-sm">{{
-                    new Date(Date.parse(data.createdAt)).toLocaleDateString()
+                    new Date(Date.parse(article.createdAt)).toLocaleDateString()
                   }}</span>
 
                   <h2
                     class="text-gray-800 text-xl font-bold hover:text-indigo-500 active:text-indigo-600 transition duration-100"
                   >
-                    {{ data.title }}
+                    {{ article.title }}
                   </h2>
 
                   <p class="text-gray-500">
-                    {{
-                      `${data.content.contents[1].value[1].value.substring(
-                        0,
-                        30
-                      )}...`
-                    }}
+                    {{ `${article.previewContents.substring(0, 30)}...` }}
                   </p>
 
                   <span

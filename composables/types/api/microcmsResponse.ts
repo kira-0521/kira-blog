@@ -18,6 +18,7 @@ type ContentsVal = {
   attributes?: Attributes;
 };
 
+// リッチエディターのオブジェクト指定時使用
 type Contents = {
   contents: Array<ContentsVal>;
 };
@@ -29,11 +30,19 @@ export type ResData = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  content: Contents;
-  image?: {
+  content: string;
+  image: {
     url: string;
     height: number;
     width: number;
   };
-  alt: string;
+  alt?: string;
+  previewContents: string;
+};
+
+export type Data = {
+  contents: ResData[];
+  limit: number;
+  offset: number;
+  totalCount: number;
 };
