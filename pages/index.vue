@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { ResData, Data } from '../composables/types/api/microcmsResponse';
+const ctx = useRuntimeConfig();
 
 const { data } = await useFetch<string, Data>('/engineer-blog', {
-  baseURL: 'https://kira-engineer.microcms.io/api/v1/',
+  baseURL: ctx.baseURL,
   headers: {
-    'X-MICROCMS-API-KEY': '2cd222d7e07842e291f7bfae11fe641d559e',
+    'X-MICROCMS-API-KEY': ctx.apiKey,
   },
 });
 const articles: Array<ResData> = data.value.contents;
