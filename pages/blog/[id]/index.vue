@@ -86,6 +86,20 @@ console.log(article.value);
     font-weight: bold;
     color: #2d3748;
     margin: 30px 0 15px 5px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0.5em;
+      left: -1.5em;
+      width: 10px;
+      height: 5px;
+      border-left: 3px solid #66a1ea;
+      border-bottom: 3px solid #66a1ea;
+      transform: rotate(-45deg);
+    }
   }
 
   > ul {
