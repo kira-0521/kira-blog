@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       // hid is used as unique identifier. Do not use `vmid` for it as it will not work
       { hid: 'description', name: 'description', content: 'Meta description' },
     ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   publicRuntimeConfig: {
     baseURL: BASE_URL,
