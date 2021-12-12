@@ -21,7 +21,6 @@ const { data: article } = await useFetch<string, ResData>(
     ],
   }
 );
-console.log(article.value);
 </script>
 
 <template>
@@ -62,7 +61,25 @@ console.log(article.value);
             </div>
           </div>
         </div>
-        <div class="col-span-1 bg-white rounded-md shadow"></div>
+        <div class="col-span-1 h-screen">
+          <div class="rounded-md shadow bg-white px-16 py-8 text-center">
+            <img
+              src="../../../public/images/me.JPG"
+              alt=""
+              class="rounded-full w-40 h-40 mx-auto"
+            />
+            <span class="text-gray-800 font-bold text-2xl mt-4 inline-block"
+              >田中 輝良 / Kira Tanaka</span
+            >
+            <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
+            <div class="text-left text-gray-700 mt-6">
+              <p>花屋見習いからフロントエンドエンジニアへ転職。</p>
+              <p class="mt-2">当サイト：Nuxt3 + microCMS</p>
+              <p class="mt-2">🌳Vue.js / ⛰Nuxt.js / 📘TypeScript</p>
+            </div>
+            <SnsNav :current-classes="['justify-center', 'mt-4']" />
+          </div>
+        </div>
       </div>
       <FooterLayout />
     </div>

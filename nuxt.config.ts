@@ -3,8 +3,11 @@ const { BASE_URL, API_KEY } = process.env;
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  /*
+   ** Headers of the page
+   */
   head: {
-    titleTemplate: '%s | Terakoya',
+    title: 'Terakoya',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
