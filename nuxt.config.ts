@@ -4,13 +4,30 @@ const { BASE_URL, API_KEY } = process.env;
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   head: {
-    titleTemplate: 'Terakoya',
+    titleTemplate: '%s | Terakoya',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Meta description' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'フロントエンドエンジニアとしてのTipsやプログラミング初心者のためのノウハウを記事にしています。',
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'Terakoya',
+      },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
     ],
-    link: [{ rel: 'favicon', href: 'favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: 'https://kira-terakoya.netlify.app/favicon.ico',
+      },
+    ],
   },
   publicRuntimeConfig: {
     baseURL: BASE_URL,
