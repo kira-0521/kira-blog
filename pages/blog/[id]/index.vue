@@ -64,7 +64,7 @@ const { data: article } = await useFetch<string, ResData>(
         <div class="col-span-1 h-screen">
           <div class="rounded-md shadow bg-white px-16 py-8 text-center">
             <img
-              src="/images/me.jpg"
+              src="/images/me.png"
               alt=""
               class="rounded-full w-40 h-40 mx-auto"
             />
