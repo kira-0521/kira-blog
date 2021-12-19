@@ -67,6 +67,7 @@ const { data: article } = await useFetch<string, ResData>(
               src="/images/me.png"
               alt=""
               class="rounded-full w-40 h-40 mx-auto"
+              loading="lazy"
             />
             <span class="text-gray-800 font-bold text-2xl mt-4 inline-block"
               >田中 輝良 / Kira Tanaka</span
@@ -135,6 +136,9 @@ const { data: article } = await useFetch<string, ResData>(
 
     > a {
       color: #0000ee;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     > span {

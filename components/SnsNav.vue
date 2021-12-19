@@ -51,7 +51,7 @@ export default {
       <a
         :href="sns.link"
         target="_blank"
-        class="text-gray-400 transition duration-100"
+        class="text-gray-400 transition duration-100 hover:cursor-pointer"
         :class="sns.linkClasses"
       >
         <svg
