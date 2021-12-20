@@ -31,9 +31,7 @@ const { data: article } = await useFetch<string, ResData>(
       <div class="grid grid-cols-3 gap-4 py-6 lg:container mx-auto">
         <div class="col-span-2 bg-white rounded-md shadow">
           <div class="px-6 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
-            <h1
-              class="text-gray-800 text-2xl sm:text-3xl font-bold text-center"
-            >
+            <h1 class="text-gray-800 text-2xl sm:text-3xl font-bold text-left">
               {{ article.title }}
             </h1>
 
@@ -62,24 +60,34 @@ const { data: article } = await useFetch<string, ResData>(
           </div>
         </div>
         <div class="col-span-1 h-screen">
-          <div class="rounded-md shadow bg-white px-16 py-8 text-center">
+          <figure class="rounded-md shadow bg-white px-16 py-8 text-center">
             <img
               src="/images/me.png"
               alt=""
               class="rounded-full w-40 h-40 mx-auto"
               loading="lazy"
             />
-            <span class="text-gray-800 font-bold text-2xl mt-4 inline-block"
-              >田中 輝良 / Kira Tanaka</span
-            >
-            <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
-            <div class="text-left text-gray-700 mt-6">
-              <p>花屋見習いからフロントエンドエンジニアへ転職。</p>
-              <p class="mt-2">当サイト：Nuxt3 + microCMS</p>
-              <p class="mt-2">🌳Vue.js / ⛰Nuxt.js / 📘TypeScript</p>
-            </div>
-            <SnsNav :current-classes="['justify-center', 'mt-4']" />
-          </div>
+            <figcaption>
+              <span class="text-gray-700 font-bold text-2xl mt-4 inline-block"
+                >輝良 / Kira</span
+              >
+              <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
+              <div class="text-left text-gray-600 mt-6 text-xs">
+                <p>
+                  Python → HTML, CSS, JavaScript,
+                  Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
+                </p>
+                <p class="mt-2">
+                  実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。<br />
+                  当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。
+                </p>
+              </div>
+            </figcaption>
+            <SnsNav
+              :current-classes="['justify-center', 'mt-4']"
+              :snsStyles="['text-twitter', 'text-github']"
+            />
+          </figure>
         </div>
       </div>
       <FooterLayout />

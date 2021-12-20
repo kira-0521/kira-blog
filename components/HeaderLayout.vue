@@ -3,7 +3,7 @@
     <!-- logo - start -->
     <nuxt-link
       to="/"
-      class="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5"
+      class="inline-flex items-center text-gray-800 text-2xl md:text-3xl font-bold gap-2.5"
       aria-label="logo"
     >
       <svg

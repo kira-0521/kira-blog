@@ -1,6 +1,6 @@
 <script lang="ts">
-const GIT_HUB = ['hover:text-github', 'active:text-github'];
-const TWITTER = ['hover:text-twitter', 'active:text-twitter'];
+const GIT_HUB = ['text-github'];
+const TWITTER = ['text-twitter'];
 
 const imgSize5 = ['w-5', 'h-5'];
 
