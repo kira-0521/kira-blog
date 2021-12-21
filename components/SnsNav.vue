@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex gap-4" :class="currentClasses">
+  <div class="gap-4" :class="currentClasses">
     <template v-for="sns in SNS_PARAMS">
       <a
         :href="sns.link"

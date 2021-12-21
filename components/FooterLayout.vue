@@ -20,7 +20,7 @@
         ]"
       />
 
-      <SnsNav />
+      <SnsNav :current-classes="['flex']" />
     </div>
 
     <div class="text-gray-400 text-sm text-center py-8">

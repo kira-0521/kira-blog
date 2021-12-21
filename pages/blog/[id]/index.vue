@@ -25,11 +25,12 @@ const { data: article } = await useFetch<string, ResData>(
 
 <template>
   <div class="bg-gray-100 pb-6 sm:pb-8 lg:pb-12">
-    <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+    <div class="max-w-screen-xl sm:px-4 md:px-8 mx-auto">
       <HeaderLayout />
-      <!-- <div class="py-6 lg:container mx-auto"> -->
-      <div class="grid grid-cols-3 gap-4 py-6 lg:container mx-auto">
-        <div class="col-span-2 bg-white rounded-md shadow">
+      <div
+        class="flex justify-between lg:flex-row flex-col sm:gap-x-4 py-6 lg:container mx-auto"
+      >
+        <div class="bg-white sm:rounded-md shadow lg:w-4/6 max-w-full">
           <div class="px-6 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
             <h1 class="text-gray-800 text-2xl sm:text-3xl font-bold text-left">
               {{ article.title }}
@@ -59,8 +60,8 @@ const { data: article } = await useFetch<string, ResData>(
             </div>
           </div>
         </div>
-        <div class="col-span-1 h-screen">
-          <figure class="rounded-md shadow bg-white px-16 py-8 text-center">
+        <div class="lg:w-2/6 w-11/12 mx-auto mt-6 lg:mt-0">
+          <figure class="rounded-md shadow bg-white px-12 py-8 text-center">
             <img
               src="/images/me.png"
               alt=""
@@ -84,8 +85,7 @@ const { data: article } = await useFetch<string, ResData>(
               </div>
             </figcaption>
             <SnsNav
-              :current-classes="['justify-center', 'mt-4']"
-              :snsStyles="['text-twitter', 'text-github']"
+              :current-classes="['justify-center', 'mt-4', 'hidden', 'lg:flex']"
             />
           </figure>
         </div>
@@ -98,6 +98,8 @@ const { data: article } = await useFetch<string, ResData>(
 <style lang="scss" scoped>
 :deep(.articles) {
   letter-spacing: 0.5px;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 
   > h2 {
     font-size: 24px;
@@ -111,15 +113,19 @@ const { data: article } = await useFetch<string, ResData>(
     font-size: 20px;
     font-weight: bold;
     color: #2d3748;
-    margin: 30px 0 15px 5px;
+    margin: 30px 0 15px 35px;
     position: relative;
+
+    @media screen and (min-width: 640px) {
+      margin: 30px 0 15px 15px;
+    }
 
     &::after {
       content: '';
       display: block;
       position: absolute;
       top: 0.5em;
-      left: -1.5em;
+      left: -1em;
       width: 10px;
       height: 5px;
       border-left: 3px solid #66a1ea;
@@ -131,16 +137,33 @@ const { data: article } = await useFetch<string, ResData>(
   > ul {
     list-style: circle;
     list-style-position: inside;
+    margin-left: 35px;
+
+    @media screen and (min-width: 640px) {
+      margin-left: 15px;
+    }
   }
 
   > ol {
     list-style: decimal;
     list-style-position: inside;
+
+    margin-left: 35px;
+
+    @media screen and (min-width: 640px) {
+      margin-left: 15px;
+    }
   }
 
   > p {
     line-height: 1.8;
     letter-spacing: 0.5px;
+    color: #4a5568;
+    padding: 0 1.5rem;
+
+    @media screen and (min-width: 640px) {
+      padding: 0;
+    }
 
     > a {
       color: #0000ee;
@@ -154,14 +177,18 @@ const { data: article } = await useFetch<string, ResData>(
     }
 
     > img {
-      border-radius: 0.5rem;
+      @media screen and (min-width: 640px) {
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
       overflow: hidden;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
   }
 
   > pre {
+    white-space: pre-wrap;
+    word-break: break-all;
     > code {
       display: block;
       padding: 1.1em 1.25em; /* 文字周りの余白 */
@@ -169,6 +196,7 @@ const { data: article } = await useFetch<string, ResData>(
       background-color: #e7edf3; /* 背景色 */
       border-radius: 3px; /* 角丸 */
       border: solid 1px #d6dde4; /* 枠線 */
+      overflow-wrap: break-word;
     }
   }
 
