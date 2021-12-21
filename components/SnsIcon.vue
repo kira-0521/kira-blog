@@ -1,22 +1,12 @@
-<script lang="ts">
-export default {
-  props: {
-    snsLink: {
-      type: String,
-      required: true,
-    },
-    linkClasses: {
-      type: Array as () => string[],
-    },
-    imgClasses: {
-      type: Array as () => string[],
-    },
-    svgPath: {
-      type: String,
-      required: true,
-    },
-  },
+<script lang="ts" setup>
+type Props = {
+  snsLink: string;
+  linkClasses: Array<string>;
+  imgClasses: Array<string>;
+  svgPath: string;
 };
+
+const { snsLink, linkClasses, imgClasses, svgPath } = defineProps<Props>();
 </script>
 
 <template>

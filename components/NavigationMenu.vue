@@ -1,16 +1,10 @@
-<script lang="ts">
-export default {
-  props: {
-    navClasses: {
-      type: Array as () => string[],
-      required: true,
-    },
-    linkClasses: {
-      type: Array as () => string[],
-      required: true,
-    },
-  },
+<script lang="ts" setup>
+type Props = {
+  navClasses: Array<string>;
+  linkClasses: Array<string>;
 };
+
+const { navClasses, linkClasses } = defineProps<Props>();
 </script>
 
 <template>
