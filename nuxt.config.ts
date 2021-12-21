@@ -32,6 +32,11 @@ export default defineNuxtConfig({
       },
     ],
   },
+  router: {
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: 0, y: 0 };
+    },
+  },
   publicRuntimeConfig: {
     baseURL: BASE_URL,
     apiKey: API_KEY,

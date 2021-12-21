@@ -14,13 +14,11 @@ const articles: Array<ResData> = data.value.contents;
 <template>
   <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
     <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
-      <HeaderLayout />
-
-      <main class="mt-16">
+      <main class="mt-12">
         <!-- text - start -->
-        <div class="mb-10 md:mb-16">
+        <div class="mb-10 md:mb-16 md:inline-block block mx-auto">
           <h2
-            class="text-gray-700 text-2xl lg:text-3xl font-bold text-center mb-2"
+            class="text-gray-700 text-2xl lg:text-3xl font-bold mb-2 text-center"
           >
             記事一覧
           </h2>
@@ -78,7 +76,6 @@ const articles: Array<ResData> = data.value.contents;
           <!-- article - end -->
         </ul>
       </main>
-      <FooterLayout />
     </div>
   </div>
 </template>

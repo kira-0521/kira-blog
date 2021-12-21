@@ -4,6 +4,8 @@ import './assets/css/tailwind.css';
 
 <template>
   <div>
+    <HeaderLayout />
     <NuxtPage />
+    <FooterLayout />
   </div>
 </template>

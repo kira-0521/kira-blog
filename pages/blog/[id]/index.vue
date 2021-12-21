@@ -26,7 +26,6 @@ const { data: article } = await useFetch<string, ResData>(
 <template>
   <div class="bg-gray-100 pb-6 sm:pb-8 lg:pb-12">
     <div class="max-w-screen-xl sm:px-4 md:px-8 mx-auto">
-      <HeaderLayout />
       <div
         class="flex justify-between lg:flex-row flex-col sm:gap-x-4 py-6 lg:container mx-auto"
       >
@@ -60,8 +59,10 @@ const { data: article } = await useFetch<string, ResData>(
             </div>
           </div>
         </div>
-        <div class="lg:w-2/6 w-11/12 mx-auto mt-6 lg:mt-0">
-          <figure class="rounded-md shadow bg-white px-12 py-8 text-center">
+        <div class="lg:w-2/6 w-full mx-auto mt-6 lg:mt-0">
+          <figure
+            class="rounded-md shadow bg-white px-16 lg:px-12 py-8 text-center"
+          >
             <img
               src="/images/me.png"
               alt=""
@@ -90,7 +91,6 @@ const { data: article } = await useFetch<string, ResData>(
           </figure>
         </div>
       </div>
-      <FooterLayout />
     </div>
   </div>
 </template>
