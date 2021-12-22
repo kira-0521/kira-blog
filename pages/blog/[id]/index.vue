@@ -24,75 +24,76 @@ const { data: article } = await useFetch<string, ResData>(
 </script>
 
 <template>
-  <div class="bg-gray-100 pb-6 sm:pb-8 lg:pb-12">
-    <div class="max-w-screen-xl sm:px-4 md:px-8 mx-auto">
-      <div
-        class="flex justify-between lg:flex-row flex-col sm:gap-x-4 py-6 lg:container mx-auto"
-      >
-        <div class="bg-white sm:rounded-md shadow lg:w-4/6 max-w-full">
-          <div class="px-6 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
-            <h1 class="text-gray-800 text-2xl sm:text-3xl font-bold text-left">
-              {{ article.title }}
-            </h1>
+  <MainLayoutWrapper
+    :mainClasses="['bg-gray-100']"
+    :inner-classes="['sm:px-4', 'md:px-8']"
+  >
+    <div
+      class="flex justify-between lg:flex-row flex-col sm:gap-x-4 py-6 lg:container mx-auto"
+    >
+      <div class="bg-white sm:rounded-md shadow lg:w-4/6 max-w-full">
+        <div class="px-6 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
+          <h1 class="text-gray-800 text-2xl sm:text-3xl font-bold text-left">
+            {{ article.title }}
+          </h1>
 
-            <div class="mt-8 w-full mx-auto">
-              <p class="publishedAt text-gray-400">
-                公開日:
-                <time :datetime="article.publishedAt">{{
-                  new Date(Date.parse(article.publishedAt)).toLocaleDateString()
-                }}</time>
-              </p>
-              <div
-                class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-full h-2/4"
-              >
-                <img
-                  :src="article.image.url"
-                  loading="lazy"
-                  alt="Photo by Minh Pham"
-                  class="w-full h-full object-cover object-center"
-                />
-              </div>
+          <div class="mt-8 w-full mx-auto">
+            <p class="publishedAt text-gray-400">
+              公開日:
+              <time :datetime="article.publishedAt">{{
+                new Date(Date.parse(article.publishedAt)).toLocaleDateString()
+              }}</time>
+            </p>
+            <div
+              class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-full h-2/4"
+            >
+              <img
+                :src="article.image.url"
+                loading="lazy"
+                alt="Photo by Minh Pham"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
 
-              <div class="w-full">
-                <div class="articles" v-html="article.content"></div>
-              </div>
+            <div class="w-full">
+              <div class="articles" v-html="article.content"></div>
             </div>
           </div>
         </div>
-        <div class="lg:w-2/6 w-full mx-auto mt-6 lg:mt-0">
-          <figure
-            class="rounded-md shadow bg-white px-16 lg:px-12 py-8 text-center"
-          >
-            <img
-              src="/images/me.png"
-              alt=""
-              class="rounded-full w-40 h-40 mx-auto"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="text-gray-700 font-bold text-2xl mt-4 inline-block"
-                >輝良 / Kira</span
-              >
-              <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
-              <div class="text-left text-gray-600 mt-6 text-xs">
-                <p>
-                  Python → HTML, CSS, JavaScript,
-                  Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
-                </p>
-                <p class="mt-2">
-                  実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。<br />
-                  当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。
-                </p>
-              </div>
-            </figcaption>
-            <SnsNav
-              :current-classes="['justify-center', 'mt-4', 'hidden', 'lg:flex']"
-            />
-          </figure>
-        </div>
+      </div>
+      <div class="lg:w-2/6 w-full mx-auto mt-6 lg:mt-0">
+        <figure
+          class="rounded-md shadow bg-white px-16 lg:px-12 py-8 text-center"
+        >
+          <img
+            src="/images/me.png"
+            alt=""
+            class="rounded-full w-40 h-40 mx-auto"
+            loading="lazy"
+          />
+          <figcaption>
+            <span class="text-gray-700 font-bold text-2xl mt-4 inline-block"
+              >輝良 / Kira</span
+            >
+            <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
+            <div class="text-left text-gray-600 mt-6 text-xs">
+              <p>
+                Python → HTML, CSS, JavaScript,
+                Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
+              </p>
+              <p class="mt-2">
+                実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。<br />
+                当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。
+              </p>
+            </div>
+          </figcaption>
+          <SnsNav
+            :current-classes="['justify-center', 'mt-4', 'hidden', 'lg:flex']"
+          />
+        </figure>
       </div>
     </div>
-  </div>
+  </MainLayoutWrapper>
 </template>
 
 <style lang="scss" scoped>
