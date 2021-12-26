@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { ResData } from '../../../composables/types/api/microcmsResponse';
+import { ResData, Tags } from '../../../composables/types/api/microcmsResponse';
 const ctx = useRuntimeConfig();
 
 const route = useRoute();
+
+// 本文
 const { data: article } = await useFetch<string, ResData>(
   `/engineer-blog/${route.params.id}`,
   {
@@ -21,12 +23,22 @@ const { data: article } = await useFetch<string, ResData>(
     ],
   }
 );
+
+// タグ
+type TagContents = { contents: Array<Tags> };
+const { data: tags } = await useFetch<string, TagContents>('/tags', {
+  baseURL: ctx.baseURL,
+  headers: {
+    'X-MICROCMS-API-KEY': ctx.apiKey,
+  },
+  pick: ['contents'],
+});
 </script>
 
 <template>
   <MainLayoutWrapper
     :mainClasses="['bg-gray-100']"
-    :inner-classes="['sm:px-4', 'md:px-8']"
+    :inner-classes="['px-4', 'md:px-8']"
   >
     <div
       class="flex justify-between lg:flex-row flex-col sm:gap-x-4 py-6 lg:container mx-auto"
@@ -38,14 +50,22 @@ const { data: article } = await useFetch<string, ResData>(
           </h1>
 
           <div class="mt-8 w-full mx-auto">
-            <p class="publishedAt text-gray-400">
-              公開日:
-              <time :datetime="article.publishedAt">{{
-                new Date(Date.parse(article.publishedAt)).toLocaleDateString()
-              }}</time>
-            </p>
+            <div class="font-serif ml-2">
+              <span class="publishedAt text-gray-600">
+                公開:
+                <time :datetime="article.publishedAt">{{
+                  new Date(Date.parse(article.publishedAt)).toLocaleDateString()
+                }}</time>
+              </span>
+              <span class="inline-block ml-4 publishedAt text-gray-600">
+                更新:
+                <time :datetime="article.updatedAt">{{
+                  new Date(Date.parse(article.publishedAt)).toLocaleDateString()
+                }}</time>
+              </span>
+            </div>
             <div
-              class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-full h-2/4"
+              class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-full h-2/4 mt-2"
             >
               <img
                 :src="article.image.url"
@@ -61,36 +81,44 @@ const { data: article } = await useFetch<string, ResData>(
           </div>
         </div>
       </div>
+
+      <!-- 右サイド -->
       <div class="lg:w-2/6 w-full mx-auto mt-6 lg:mt-0">
-        <figure
-          class="rounded-md shadow bg-white px-16 lg:px-12 py-8 text-center"
-        >
-          <img
-            src="/images/me.png"
-            alt=""
-            class="rounded-full w-40 h-40 mx-auto"
-            loading="lazy"
-          />
-          <figcaption>
-            <span class="text-gray-700 font-bold text-2xl mt-4 inline-block"
-              >輝良 / Kira</span
-            >
-            <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
-            <div class="text-left text-gray-600 mt-6 text-xs">
-              <p>
-                Python → HTML, CSS, JavaScript,
-                Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
-              </p>
-              <p class="mt-2">
-                実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。<br />
-                当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。
-              </p>
-            </div>
-          </figcaption>
-          <SnsNav
-            :current-classes="['justify-center', 'mt-4', 'hidden', 'lg:flex']"
-          />
-        </figure>
+        <UserCard
+          imgSrc="/images/me.png"
+          user-name="輝良 / Kira"
+          text="Python → HTML, CSS, JavaScript,
+              Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
+              実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。
+              当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。"
+        />
+
+        <CardWrapper :classes="['bg-white', 'mt-4', 'p-4']">
+          <div class="p-4 bg-gray-200 rounded-md">
+            <span class="text-2xl font-mono text-gray-800">タグ</span>
+          </div>
+          <ul class="px-2 lg:px-4 py-8">
+            <li v-for="tag in tags.contents" class="inline-block mr-4">
+              <nuxt-link :to="tag.id" class="w-full h-full flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-600 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                  />
+                </svg>
+                {{ tag.name }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </CardWrapper>
       </div>
     </div>
   </MainLayoutWrapper>

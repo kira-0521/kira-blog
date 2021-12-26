@@ -14,7 +14,7 @@ const articles: Array<ResData> = data.value.contents;
 <template>
   <MainLayoutWrapper
     :mainClasses="['bg-white']"
-    :inner-classes="['sm:px-4', 'md:px-8', 'mt-12']"
+    :inner-classes="['px-4', 'md:px-8', 'mt-12']"
   >
     <div class="mb-10 md:mb-16 md:inline-block block mx-auto">
       <h2 class="text-gray-700 text-2xl lg:text-3xl font-bold mb-2 text-center">
@@ -46,9 +46,12 @@ const articles: Array<ResData> = data.value.contents;
             </div>
 
             <div class="flex flex-col gap-2 p-4 lg:p-6">
-              <span class="text-gray-400 text-sm">{{
-                new Date(Date.parse(article.createdAt)).toLocaleDateString()
-              }}</span>
+              <span class="text-gray-400 text-sm"
+                >更新:
+                {{
+                  new Date(Date.parse(article.updatedAt)).toLocaleDateString()
+                }}</span
+              >
 
               <h2
                 class="text-gray-800 text-xl font-bold hover:text-indigo-500 active:text-indigo-600 transition duration-100"
@@ -56,9 +59,28 @@ const articles: Array<ResData> = data.value.contents;
                 {{ article.title }}
               </h2>
 
-              <p class="text-gray-500">
-                {{ `${article.previewContents.substring(0, 30)}...` }}
-              </p>
+              <ul class="flex text-gray-500 text-sm">
+                <li
+                  v-for="tag in article.tags"
+                  class="flex items-center ml-2 first:ml-0"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 mr-1"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    ><i>{{ tag.name }}</i></span
+                  >
+                </li>
+              </ul>
 
               <span
                 class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100"

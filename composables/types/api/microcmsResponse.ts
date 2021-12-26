@@ -23,6 +23,15 @@ type Contents = {
   contents: Array<ContentsVal>;
 };
 
+export type Tags = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  name: string;
+};
+
 export type ResData = {
   id: string;
   createdAt: string;
@@ -31,13 +40,14 @@ export type ResData = {
   revisedAt: string;
   title: string;
   content: string;
-  image: {
+  image?: {
     url: string;
     height: number;
     width: number;
   };
   alt?: string;
   previewContents: string;
+  tags: Array<Tags>;
 };
 
 export type Data = {
