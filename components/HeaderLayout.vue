@@ -1,6 +1,8 @@
 <template>
   <header class="py-4 lg:py-6 px-6 lg:px-8">
-    <div class="flex justify-between items-center mx-auto h-full">
+    <div
+      class="flex justify-between items-center mx-auto max-w-screen-xl h-full"
+    >
       <nuxt-link
         to="/"
         class="inline-flex items-center text-gray-800 text-2xl md:text-3xl font-bold gap-2.5"
