@@ -23,7 +23,7 @@ type Contents = {
   contents: Array<ContentsVal>;
 };
 
-export type Tags = {
+export type Tag = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -47,7 +47,7 @@ export type ResData = {
   };
   alt?: string;
   previewContents: string;
-  tags: Array<Tags>;
+  tags: Array<Tag>;
 };
 
 export type Data = {

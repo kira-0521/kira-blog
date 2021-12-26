@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ResData } from '../composables/types/api/microcmsResponse';
+import { ResData, Tag } from '../../composables/types/api/microcmsResponse';
 const ctx = useRuntimeConfig();
+const route = useRoute();
 
 const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
   '/engineer-blog',
@@ -11,6 +12,25 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
     },
   }
 );
+
+const showArticles = ref<Array<ResData>>();
+onMounted(async () => {
+  const { data: tag } = await useFetch<string, Tag>(
+    `/tags/${route.params.id}`,
+    {
+      baseURL: ctx.baseURL,
+      headers: {
+        'X-MICROCMS-API-KEY': ctx.apiKey,
+      },
+    }
+  );
+
+  const filtered = articles.value.contents.filter((article) =>
+    article.tags.find((val) => val.name === tag.value.name)
+  );
+
+  showArticles.value = filtered.length > 0 ? filtered : articles.value.contents;
+});
 </script>
 
 <template>
@@ -30,7 +50,7 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
     <ul
       class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 xl:gap-8"
     >
-      <template v-for="article in articles.contents">
+      <template v-for="article in showArticles">
         <li class="border rounded-lg overflow-hidden">
           <nuxt-link
             :to="`/blog/${article.id}`"

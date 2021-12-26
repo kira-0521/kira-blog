@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ResData, Tags } from '../../../composables/types/api/microcmsResponse';
+import { ResData, Tag } from '../../../composables/types/api/microcmsResponse';
 const ctx = useRuntimeConfig();
 
 const route = useRoute();
@@ -25,14 +25,16 @@ const { data: article } = await useFetch<string, ResData>(
 );
 
 // タグ
-type TagContents = { contents: Array<Tags> };
-const { data: tags } = await useFetch<string, TagContents>('/tags', {
-  baseURL: ctx.baseURL,
-  headers: {
-    'X-MICROCMS-API-KEY': ctx.apiKey,
-  },
-  pick: ['contents'],
-});
+const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
+  '/tags',
+  {
+    baseURL: ctx.baseURL,
+    headers: {
+      'X-MICROCMS-API-KEY': ctx.apiKey,
+    },
+    pick: ['contents'],
+  }
+);
 </script>
 
 <template>
@@ -99,7 +101,10 @@ const { data: tags } = await useFetch<string, TagContents>('/tags', {
           </div>
           <ul class="px-2 lg:px-4 py-8">
             <li v-for="tag in tags.contents" class="inline-block mr-4">
-              <nuxt-link :to="tag.id" class="w-full h-full flex items-center">
+              <nuxt-link
+                :to="`/${tag.id}`"
+                class="w-full h-full flex items-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5 text-gray-600 mr-1"
