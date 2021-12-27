@@ -20,6 +20,7 @@ const { data: article } = await useFetch<string, ResData>(
       'updatedAt',
       'publishedAt',
       'image',
+      'tags',
     ],
   }
 );
@@ -51,7 +52,9 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
             {{ article.title }}
           </h1>
 
-          <div class="mt-8 w-full mx-auto">
+          <Tags :tags="article.tags" :ul-classes="['mt-4', 'ml-2']" />
+
+          <div class="mt-6 w-full mx-auto">
             <div class="font-serif ml-2">
               <span class="publishedAt text-gray-600">
                 公開:

@@ -61,33 +61,12 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
                 {{ article.title }}
               </h2>
 
-              <ul class="flex text-gray-500 text-sm">
-                <li
-                  v-for="tag in article.tags"
-                  class="flex items-center ml-2 first:ml-0"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-3 w-3 mr-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span
-                    ><i>{{ tag.name }}</i></span
-                  >
-                </li>
-              </ul>
+              <Tags :tags="article.tags" />
 
               <span
                 class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100"
               >
-                Read more
+                Read
               </span>
             </div>
           </nuxt-link>
