@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ResData, Tag } from '../../../composables/types/api/microcmsResponse';
 const ctx = useRuntimeConfig();
-
 const route = useRoute();
 
 // 本文
@@ -55,19 +54,55 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
           <Tags :tags="article.tags" :ul-classes="['mt-4', 'ml-2']" />
 
           <div class="mt-6 w-full mx-auto">
-            <div class="font-serif ml-2">
-              <span class="publishedAt text-gray-600">
-                公開:
-                <time :datetime="article.publishedAt">{{
-                  new Date(Date.parse(article.publishedAt)).toLocaleDateString()
-                }}</time>
-              </span>
-              <span class="inline-block ml-4 publishedAt text-gray-600">
-                更新:
-                <time :datetime="article.updatedAt">{{
-                  new Date(Date.parse(article.publishedAt)).toLocaleDateString()
-                }}</time>
-              </span>
+            <div class="font-serif ml-2 flex items-center justify-start">
+              <div class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                <span class="ml-2 publishedAt text-gray-600">
+                  <time :datetime="article.publishedAt">{{
+                    new Date(
+                      Date.parse(article.publishedAt)
+                    ).toLocaleDateString()
+                  }}</time>
+                  公開
+                </span>
+              </div>
+              <div class="flex items-center ml-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                <span class="ml-2 inline-block publishedAt text-gray-600">
+                  <time :datetime="article.updatedAt">{{
+                    new Date(
+                      Date.parse(article.publishedAt)
+                    ).toLocaleDateString()
+                  }}</time>
+                  更新
+                </span>
+              </div>
             </div>
             <div
               class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8 w-full h-2/4 mt-2"
@@ -92,7 +127,7 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
         <UserCard
           imgSrc="/images/me.png"
           user-name="輝良 / Kira"
-          text="Python → HTML, CSS, JavaScript,
+          text="HTML, CSS, JavaScript,
               Vueを勉強して、未経験から独学でフロントエンドエンジニアへ転職。
               実務ではTypeScriptとVueを使用。モダンフロントエンド技術が好き。
               当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。"
@@ -139,36 +174,31 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
   word-break: keep-all;
 
   > h2 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    color: #66a1ea;
+    color: #1f2437;
     margin: 40px 0 16px;
-    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 3px;
+      width: 6px;
+      height: 100%;
+      background: #667eea;
+    }
   }
 
   > h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #2d3748;
-    margin: 30px 0 15px 35px;
-    position: relative;
-
-    @media screen and (min-width: 640px) {
-      margin: 30px 0 15px 15px;
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0.5em;
-      left: -1em;
-      width: 10px;
-      height: 5px;
-      border-left: 3px solid #66a1ea;
-      border-bottom: 3px solid #66a1ea;
-      transform: rotate(-45deg);
-    }
+    border-bottom: 1px solid #ddd;
+    margin: 15px 0 10px;
   }
 
   > ul {
@@ -193,9 +223,9 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
   }
 
   > p {
-    line-height: 1.8;
+    line-height: 2.4rem;
     letter-spacing: 0.5px;
-    color: #4a5568;
+    color: #1f2437;
     padding: 0 1.5rem;
 
     @media screen and (min-width: 640px) {
