@@ -4,30 +4,32 @@ import { Tag } from '../composables/types/api/microcmsResponse';
 type Props = {
   tags: Array<Tag>;
   ulClasses?: Array<string>;
-  // liClasses: Array<string>;
-  // linkClasses: Array<string>;
-  // tagClasses: Array<string>;
+  liClasses?: Array<string>;
+  linkClasses?: Array<string>;
+  tagClasses?: Array<string>;
 };
 
 const {
   tags,
   ulClasses,
-  // liClasses,
-  // linkClasses,
-  // tagClasses,
+  liClasses,
+  linkClasses,
+  tagClasses,
 } = defineProps<Props>();
 </script>
 
 <template>
   <ul class="flex text-gray-500 text-sm" :class="ulClasses">
-    <li v-for="tag in tags" class="ml-2 first:ml-0">
+    <li v-for="tag in tags" class="ml-2 first:ml-0" :class="liClasses">
       <nuxt-link
         :to="`/${tag.id}`"
         class="w-full h-full flex items-center hover:text-pink-500"
+        :class="linkClasses"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-3 w-3 mr-1"
+          :class="tagClasses"
           viewBox="0 0 20 20"
           fill="currentColor"
         >

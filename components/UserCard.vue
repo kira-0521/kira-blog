@@ -2,7 +2,7 @@
 type Props = {
   imgSrc: string;
   userName: string;
-  text: string;
+  text?: string;
 };
 
 const { imgSrc, userName, text } = defineProps<Props>();
@@ -23,7 +23,7 @@ const { imgSrc, userName, text } = defineProps<Props>();
         }}</span>
         <div class="bg-indigo-600 h-1 w-12 mx-auto mt-4 rounded-sm"></div>
         <div class="text-left text-gray-600 mt-6 text-xs">
-          <p class="leading-4">
+          <p class="leading-6">
             {{ text }}
           </p>
         </div>
