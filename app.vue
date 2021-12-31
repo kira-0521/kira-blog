@@ -28,9 +28,7 @@ useMeta({
       <Link rel="icon" type="image/x-icon" href="/favicon.ico" />
     </Head>
   </Html>
-  <div>
-    <HeaderLayout />
-    <NuxtPage />
-    <FooterLayout />
-  </div>
+  <HeaderLayout />
+  <NuxtPage />
+  <FooterLayout />
 </template>

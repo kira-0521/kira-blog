@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import useFetchArticle from '~~/composables/hooks/useFetchArticle';
 import { ResData } from '../composables/types/api/microcmsResponse';
 const ctx = useRuntimeConfig();
 
@@ -15,16 +16,15 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
 
 <template>
   <MainLayoutWrapper
-    :mainClasses="['bg-white']"
-    :inner-classes="['px-4', 'md:px-8', 'mt-12']"
+    :mainClasses="['bg-white', 'mt-28', 'sm:mt-32']"
+    :inner-classes="['px-4', 'md:px-8']"
   >
     <div class="mb-10 md:mb-16 md:inline-block block mx-auto">
-      <h2 class="text-gray-700 text-2xl lg:text-3xl font-bold mb-2 text-center">
+      <h2
+        class="text-gray-700 text-2xl lg:text-3xl font-bold mb-2 text-center relative md:pl-4 article-list-title"
+      >
         記事一覧
       </h2>
-      <div
-        class="bg-gradient-to-r from-green-400 to-indigo-500 w-16 h-1 mx-auto rounded"
-      ></div>
     </div>
 
     <ul
@@ -48,12 +48,27 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
             </div>
 
             <div class="flex flex-col gap-2 p-4 lg:p-6">
-              <span class="text-gray-400 text-sm"
-                >更新:
-                {{
-                  new Date(Date.parse(article.updatedAt)).toLocaleDateString()
-                }}</span
-              >
+              <div class="flex items-center text-gray-400">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                <span class="text-sm ml-2">
+                  {{
+                    new Date(Date.parse(article.updatedAt)).toLocaleDateString()
+                  }}</span
+                >
+              </div>
 
               <h2
                 class="text-gray-800 text-xl font-bold hover:text-indigo-500 active:text-indigo-600 transition duration-100"
@@ -75,3 +90,22 @@ const { data: articles } = await useFetch<string, { contents: Array<ResData> }>(
     </ul>
   </MainLayoutWrapper>
 </template>
+
+<style scoped lang="scss">
+.article-list-title {
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 3px;
+      width: 6px;
+      height: 100%;
+      background: #667eea;
+    }
+  }
+}
+</style>

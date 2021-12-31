@@ -39,7 +39,7 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
 
 <template>
   <MainLayoutWrapper
-    :mainClasses="['bg-gray-100']"
+    :mainClasses="['bg-gray-100', 'mt-20']"
     :inner-classes="['px-4', 'md:px-8']"
   >
     <div
@@ -96,9 +96,7 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
                 </svg>
                 <span class="ml-2 inline-block publishedAt text-gray-600">
                   <time :datetime="article.updatedAt">{{
-                    new Date(
-                      Date.parse(article.publishedAt)
-                    ).toLocaleDateString()
+                    new Date(Date.parse(article.updatedAt)).toLocaleDateString()
                   }}</time>
                   更新
                 </span>
@@ -133,7 +131,7 @@ const { data: tags } = await useFetch<string, { contents: Array<Tag> }>(
               当サイトはNuxt3+TS+TailwindCSS+microCMSで構築。"
         />
 
-        <CardWrapper :classes="['bg-white', 'mt-4', 'p-4']">
+        <CardWrapper :classes="['bg-white', 'mt-4', 'p-4', 'sticky', 'top-4']">
           <div class="p-4 bg-gray-200 rounded-md">
             <span class="text-2xl font-mono text-gray-800">タグ</span>
           </div>
